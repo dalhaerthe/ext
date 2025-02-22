@@ -1,5 +1,5 @@
 let a = document.getElementById("btn");
 
-tst=()=> {
+tst= function() {
   alert("aaa")
 }

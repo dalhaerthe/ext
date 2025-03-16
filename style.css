@@ -1,0 +1,18 @@
+body {
+    
+    background-color: rgb(238, 230, 230);
+    
+    
+}
+
+#topc {
+    margin: 10pc;
+    color: brown;
+    text-align: center;
+    border: 3mm solid green;
+    border-radius: 2%;
+    box-shadow: 3px;
+}
+
+
+

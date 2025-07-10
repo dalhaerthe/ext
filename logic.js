@@ -1,12 +1,6 @@
-
-let topic=document.getElementById('topc');
-
-let y= document.getElementById('main');
-
-
-
-let tstTab = [
-'Schronienie',
+ 
+const sentences = [
+  'Schronienie',
 'Cztery podstawowe rozmyślania',
 'Cenne ludzkie ciało',
 'O przemijalności',
@@ -17,7 +11,7 @@ let tstTab = [
 'Moc życzeń',
 'Co oznacza budda - Przebudzony',
 'Przyczyna i skutek',
-'cztery czynniki wzmacniajace karmę',
+'Cztery czynniki wzmacniajace karmę',
 'Buddyzma a filozofia, psychologia, religia',
 'Buddyzm a nauka',
 'Co to jest ego',
@@ -56,8 +50,7 @@ let tstTab = [
 'Nauczyciel i uczeń',
 'Strażnicy',
 'Jidamy',
-'Buddyzm jako religia doświadczenia - religie wiary a religie',
-'doświadczenia',
+'Buddyzm jako religia doświadczenia - religie wiary a religie doświadczenia',
 'Jak buddyzm zakorzenia się na Zachodzie',
 'Jaki typ ludzi jest zainteresowanych buddyzmem',
 '2 nagromadzenia - dobrych wrażeń i mądrości.',
@@ -129,15 +122,90 @@ let tstTab = [
 ' Różne aspekty historii życia ważnych lamów naszej linii przekazu, którzy mają szczególne znaczenie dla nas dzisiaj – Lobpyn Tseczu Rinpocze *',
 ' Podróżowanie z nauczycielem *',
 ' Jak funkcjonują nasze ośrodki Diamentowej Drogi (przejmowanie funkcji, przyjaźń, merytokracja, przejrzystość, działalność społeczna) *',
-' Tanki i formy buddów (formy, symbole, gesty i ich znaczenie) *']
+' Tanki i formy buddów (formy, symbole, gesty i ich znaczenie) *'
+
+
+];
 
 
 
-let rnd = Math.floor(Math.random() * tstTab.length);
 
-topic.innerHTML=tstTab[rnd];
+let interval;
+let delay = 20;
+let currentIndex = 0;
+let tries = 3;
+let triesdispl=document.getElementById('tries');
+let mani=document.getElementById('mani');
+triesdispl.innerText=tries;
+const btn=document.getElementById('btn');
+let nr=0; //indeks tematów
+
+
+mani //ustawić na niewidzialne, potem na widzialne
+
+const el = document.getElementById("sentence");
+
+
+function changeColor() {
+  el.style.color='black';
+  
+}
+
+
+function startLottery() {
+  changeColor();
+  
+  clearInterval(interval);
+  delay = 20;
+  currentIndex = 0;
+  animateLoop();
+tries --;
+triesdispl.innerText=tries;
+if(tries==0) {
+
+  btn.disabled=true;
+  btn.style.opacity=.3;
+}
+
+
+}
+
+function animateLoop() {
+  
+  interval = setInterval(() => {
+    
+    el.style.opacity = 0;
+    setTimeout(() => {
+      nr=Math.floor(Math.random() * sentences.length);
+      el.innerText = sentences[nr];
+      
+      
+      el.style.opacity = 1;
+    }, 10);
+
+    delay += 10;
+
+    if (delay > 100) {
+      clearInterval(interval);
+      el.style.color='red';
+      sentences.splice(nr,1);
+
+    } else {
+      clearInterval(interval);
+      interval = setTimeout(animateLoop, delay);
+    }
+  }, delay);
+
+}
+
+
+
+
+
 
 tstTab.splice(rnd,1);
+
+
 
 
 

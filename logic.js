@@ -1,6 +1,7 @@
- 
-const sentences = [
-  'Schronienie',
+//import topics from './topics.js';   nie chce działać
+
+const topics = [
+'Schronienie',
 'Cztery podstawowe rozmyślania',
 'Cenne ludzkie ciało',
 'O przemijalności',
@@ -129,7 +130,6 @@ const sentences = [
 
 
 
-
 let interval;
 let delay = 20;
 let currentIndex = 0;
@@ -139,6 +139,7 @@ let mani=document.getElementById('mani');
 triesdispl.innerText=tries;
 const btn=document.getElementById('btn');
 let nr=0; //indeks tematów
+const btnExp=document.getElementById('btnExp');
 
 
 mani //ustawić na niewidzialne, potem na widzialne
@@ -161,10 +162,32 @@ function startLottery() {
   animateLoop();
 tries --;
 triesdispl.innerText=tries;
+
 if(tries==0) {
 
   btn.disabled=true;
   btn.style.opacity=.3;
+}
+
+
+//zapis do pliku
+btnExp.onclick=function startExport() {
+
+
+
+    const blob = new Blob([el.innerText], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'wylosowany_temat.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url); // Zwolnij pamięć
+alert('Twój temat został pobrany jako plik tekstowy');
+
+
+
 }
 
 
@@ -176,10 +199,10 @@ function animateLoop() {
     
     el.style.opacity = 0;
     setTimeout(() => {
-      nr=Math.floor(Math.random() * sentences.length);
-      el.innerText = sentences[nr];
-      
-      
+      nr=Math.floor(Math.random() * topics.length);
+      el.innerText = topics[nr];
+      if(tries<3) {btnExp.style.display='inline';}
+
       el.style.opacity = 1;
     }, 10);
 
@@ -188,7 +211,7 @@ function animateLoop() {
     if (delay > 100) {
       clearInterval(interval);
       el.style.color='red';
-      sentences.splice(nr,1);
+      topics.splice(nr,1);
 
     } else {
       clearInterval(interval);
@@ -197,13 +220,6 @@ function animateLoop() {
   }, delay);
 
 }
-
-
-
-
-
-
-tstTab.splice(rnd,1);
 
 
 

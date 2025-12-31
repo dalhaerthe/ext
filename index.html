@@ -25,11 +25,15 @@
 
 <p></p>
     <div id="sentence">Kliknij, aby wylosować temat</div>
-  <button id="btn" class="glow-on-hover" onclick="startLottery()">Losuj temat</button>
+    <button id="btn" class="glow-on-hover" onclick="startLottery()">Losuj temat</button>
+    <div>
+<button id="btnExp" class="savebutton" style="display: none;" onclick="startExport()"> Eksportuj temat do pliku </button>
+</div>
 </div>
 
 
+        <script src="logic.js"></script>
+        <script type="module" src="topics.js"></script>
 
-        <script  src="logic.js "></script>    
         </body>
 </html>

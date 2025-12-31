@@ -29,13 +29,27 @@ body {
 
 button {
   padding: 10px 20px;
+  margin: 1%;
   font-size: 18px;
   background: linear-gradient(135deg, #fbd56e, #e68326);
-  color: white;
+  color: rgb(6, 0, 0);
   border: none;
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.savebutton {
+    padding: 10px 20px;
+    margin: 1%;
+    font-size: 18px;
+    background: linear-gradient(135deg, #6efbd5, #26e6a3);
+    color: rgb(6, 0, 0);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
 }
 
 
